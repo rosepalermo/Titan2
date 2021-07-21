@@ -21,17 +21,18 @@ p.doWaveErosion = 0;
 
 % grid shoreline and calculate strength loss over 100 years with time steps
 % varying from 5 to 100 years
-dx = [5 18 45 90];
-dt = [10 20 50 100];
-tend = 15000;
-ncells = [20 50 100];
+% dx = [5 18 45 90];
+dx = 18;
+dt = 100;%[10 20 50 100];
+tend = 150000;
+ncells = 50;%[20 50 100];
 sidelength = 100;
 totalSloss_frac = zeros(length(ncells),length(dt));
 for i = 1:length(ncells)
-%         [lake,~,~] = gridlake(flipud(x)',flipud(y)',dx(i),dx(i),400);
+        [lake,~,~] = gridlake(flipud(x)',flipud(y)',dx(i),dx(i),400);
 %     [init,~] = test_circle(p,dx(i),200);lake = ~init;
 %     [init,~] = test_square(p,dx(i),900);lake = ~init;
-    [lake,dx(i)] = test_square_repelem(ncells(i),sidelength);
+%     [lake,dx(i)] = test_square_repelem(ncells(i),sidelength);
     for t = 1:length(dt)
         [strengthloss{i,t},totalSloss_frac(i,t),test{i,t}] = calcstrengthloss(lake,dt(t),tend,p,dx(i),0);
     end
@@ -68,9 +69,15 @@ shorelinelength(i) = length(find(strengthloss{i}>0));
 end
 figure()
 for i = 1:length(strengthloss)
+    test{i,1}(test{i,1}==0) = nan;
     plot(test{i,1})
     hold on
 end
 ylabel('sum(strength_o_u_t-strength_i_n)')
 xlabel('time')
 
+figure()
+imagesc(strengthloss{1})
+
+%total strength loss
+% circle mean pass = 89.4615, max = 89.4805, no pass = 86.5286

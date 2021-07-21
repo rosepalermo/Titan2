@@ -13,8 +13,8 @@ end
 % because damage is normalized to 1, we need as many time steps as if we
 % round up the damage. When <1, only one time step, so not really adaptive.
 % When >1, we divide by ceil(damage) so that it is never greater than 0.1.
-if max(dam_matrix,[],'all')>0.1
-adt = ceil(max(dam_matrix,[],'all'))*10;
+if max(dam_matrix,[],'all')>(1/p.sensitivity)*p.strength
+adt = ceil(max(dam_matrix,[],'all')./p.strength)*(p.sensitivity/100);
 
 dam_matrix = dam_matrix./adt;
 else

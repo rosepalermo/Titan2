@@ -76,7 +76,7 @@ clearvars erodedind
     
     wave_weight_matrix(unique_ind) = unique_sum_wave;
     fetch_matrix(unique_ind) = unique_sum_fetch;
-    dam = p.dt*p.Kwave*shoreline(unique_ind).*unique_sum_wave*p.So./p.dxo./p.Ao*p.dx;
+    dam = p.dt*p.Kwave*shoreline(unique_ind).*unique_sum_wave*p.So./p.dxo*p.dx./p.Ao;
     dam_matrix(unique_ind) = dam_matrix(unique_ind)+dam; % have to do this because if a shoreline cell is an island on the big one and has a second order lake in it, we don't want the damage from the second order lake to be the only damage it receives. need to add up damage from both sides.
     
 end

@@ -43,10 +43,10 @@ p.So = 1;
 p.dxo = 100;
 p.doUniformErosion = 1;
 p.doWaveErosion = 0;
-p.tf = 800;
+p.tf = 1000;
 p.strength = p.So*p.dx.^2./p.dxo^2;
-p.sensitivity = 0.1; % maximum 0.2 - this controls the # of adaptive time steps. 10% of p.strength up to 20%. 10% is the conservative case. 20% is maybe to lax- could get bugs
-p.runname = ('/Users/rosepalermo/Documents/Research/Titan/ModelOutput/paper1/modelmethods/circle_analytical_error/uniform_t1000_con8_0_sens_25');
+p.sensitivity = ;
+p.runname = ('/Users/rosepalermo/Documents/Research/Titan/ModelOutput/paper1/modelmethods/circle_analytical_error/uniform_t1000_con8_0_sens_20');
 solution = Tadpole(init*10,p);
 figure()
 imagesc(solution(:,:,end)); title('con8 = 0')

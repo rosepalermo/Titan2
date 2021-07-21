@@ -11,7 +11,7 @@ end
 [dam_matrix,~,p] = get_dam_uniform(lake,p);
 
 if max(dam_matrix,[],'all')>(p.sensitivity)*p.strength
-adt = ceil(max(dam_matrix,[],'all')./p.strength)*(1/p.sensitivity);
+adt = ceil(max(dam_matrix,[],'all')./p.strength)*(p.sensitivity*10);
 
 dam_matrix = dam_matrix./adt;
 else

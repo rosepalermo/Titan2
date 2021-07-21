@@ -27,7 +27,7 @@ eps = 0.1;
 epsilon = 1e-4;
 snap_distance = 0.05; % Looks like we get some invalid (empty array) visibility polygons if snap_distance >= eps.
 
-[WaveArea, Fetch_dist, cosang] = fetch_VisiLibity(shorelines,eps,epsilon,snap_distance);
+[WaveArea, Fetch_dist, cosang, V] = fetch_VisiLibity(shorelines,eps,epsilon,snap_distance);
 
 
 % plot total wave area
@@ -37,3 +37,6 @@ scatter3(shorelines{k}(:,1),shorelines{k}(:,2),WaveArea{k}(:,1),[],WaveArea{k}(:
 hold on
 view(2)
 end
+
+figure()
+plot_env(shorelines, [shorelines{1}(1,1) shorelines{1}(1,2)],V);

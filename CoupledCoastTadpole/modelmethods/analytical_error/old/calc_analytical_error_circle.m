@@ -1,4 +1,4 @@
-% calculate delta area for circle grid bias test for uniform and wave
+% calculate change in area for circle grid bias test for uniform and wave
 % erosion
 
 % accompanies slideshow "Analytical error of model"

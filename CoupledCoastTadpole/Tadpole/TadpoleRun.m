@@ -93,6 +93,13 @@ while keepgoing
     temp = g.output(:,:,1)-g.U;
     g.meanrelief = mean(g.U,'all')-min(g.U,[],'all');
     keepgoing = g.meanrelief > p.relief_init*p.relief_final; %keepgoing if the relief isn't eroded past final
+    elseif isfield(p,'aerrortest')
+        if p.t<p.tf
+            keepgoing = 1;
+        else
+            keepgoing = 0;
+        end
+    
     else
     keepgoing = (~kill_switch && g.nLakeCells < p.size_final*g.nLakeCells_init);%g.nLakeCells < p.Ao_cells*p.size_final) % if either the lake hits the bournday or the max lake size
     end
